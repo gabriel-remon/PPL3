@@ -55,6 +55,8 @@ label, input{
 }
 input{
     width: 100%;
+    min-height:25px ;
+    margin: 5px 0px;
 }
 #perro,#gato{
     width: auto;

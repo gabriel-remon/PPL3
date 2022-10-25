@@ -38,8 +38,10 @@ export class Anuncio_mascota extends Anuncio{
 
         const boton = document.createElement("button");
         
-        articulo.classList.add("articulo-vehiculo");
-        boton.classList.add("boton-vehiculo");
+        articulo.setAttribute("data-id",this.id);
+
+        articulo.classList.add("articulo-mascota");
+        boton.classList.add("boton-mascota");
         divEspecificacion.classList.add("especificaciones");
         precio.classList.add("precio-venta");
 
@@ -54,7 +56,7 @@ export class Anuncio_mascota extends Anuncio{
         spanFeha.textContent = this.edad;
         spanVacuna.textContent = this.vacunado;
 
-        boton.textContent="guardar";
+        boton.textContent="Ver Mascota";
 
         divEspecificacion.appendChild(imagenRaza);
         divEspecificacion.appendChild(spanRaza);
@@ -73,30 +75,20 @@ export class Anuncio_mascota extends Anuncio{
     }
 
     pushLS() {
-        let data=leerLS("mascotas");
+        let data=JSON.parse(localStorage.getItem("mascotas"));
         
         if(data==null)
         {
             data=[];
         }
         data.push(this);
-        guardarLS("mascotas",data);
+        localStorage.setItem("mascotas",JSON.stringify(data))
     }
 
     static LeerLS()
     {
-        return leerLS("mascotas");
+        return JSON.parse(localStorage.getItem("mascotas"));
     }
 
-}
-
-function guardarLS(nombre,objeto)
-{
-    localStorage.setItem(nombre,JSON.stringify(objeto));
-}
-
-function leerLS(nombre)
-{
-    return JSON.parse(localStorage.getItem(nombre));
 }
 
